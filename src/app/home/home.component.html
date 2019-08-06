@@ -1,0 +1,39 @@
+<p style="text-align: center">
+	<input type="checkbox" [(ngModel)]="live"> Live changes
+</p>
+
+<div class="cols" *mobxAutorun>
+	<div>
+		<h3>Edit Patent</h3>
+		<p>
+			<b>Name:</b>
+			<input *ngIf="live" [(ngModel)]="store.patent.name">
+			<input *ngIf="!live" [(ngModel)]="workingPatent.name">
+		</p>
+		<p>
+			<b>Description:</b><br>
+			<textarea *ngIf="live" [(ngModel)]="store.patent.description" style="width: 100%"></textarea>
+			<textarea *ngIf="!live" [(ngModel)]="workingPatent.description" style="width: 100%"></textarea>
+		</p>
+		<p *ngIf="!live">
+			<button (click)="store.savePatent(workingPatent)">Save Changes</button>
+		</p>
+	</div>
+	<div>
+		<h3>Patent Details</h3>
+		<p>
+			<b>Name:</b>
+			{{ store.patent.name }}
+		</p>
+		<p>
+			<b>Description:</b>
+			{{ store.patent.description }}
+		</p>
+		<p>
+			<b>Abbreviation:</b>
+			{{ store.patentAbbreviation }}
+		</p>
+	</div>
+</div>
+
+<button (click)="events.publish('toggle-notification')" style="display: block; margin: 0 auto">Event Bus Toggle</button>

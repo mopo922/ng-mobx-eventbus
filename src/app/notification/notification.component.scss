@@ -1,0 +1,13 @@
+.notification {
+    height: 64px;
+    margin: 0;
+    background: SkyBlue;
+    line-height: 64px;
+    text-align: center;
+    overflow: hidden;
+    transition: height 1s;
+
+    &.collapsed {
+        height: 0;
+    }
+}
